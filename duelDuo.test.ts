@@ -6,7 +6,7 @@ require('chromedriver')
 const driver = new Builder().withCapabilities(Capabilities.chrome()).build()
 
 beforeEach(async () => {
-    driver.get('http://localhost:3000/')
+    driver.get('http://localhost:5500/public/index.html')  //I had to change this to make it work http://localhost:3000
 })
 
 afterAll(async () => {
@@ -27,6 +27,7 @@ test('Draw button displays div with id choices', async() =>{
 })
 
 test('Add to Duo button displays div with id player-duo', async() =>{
+    await driver.findElement(By.id('draw')).click()
     await driver.findElement(By.className('bot-btn')).click()
     const displayed = await driver.findElement(By.id('player-duo')).isDisplayed()
     expect(displayed).toBe(true)

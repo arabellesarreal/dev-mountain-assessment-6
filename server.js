@@ -6,6 +6,7 @@ const {shuffleArray} = require('./utils')
 
 app.use(cors())
 app.use(express.json())
+app.use(express.static(`${__dirname}/public`))
 
 app.get('/api/robots', (req, res) => {
     try {
